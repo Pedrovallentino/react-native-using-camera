@@ -1,245 +1,141 @@
-Aplicativo desenvolvido com React Native + Expo, utilizando expo-camera e expo-location.
+# 📸 Aplicativo de Câmera com Localização — React Native + Expo
 
-Permite capturar fotos, salvar a localização e visualizar as imagens em uma galeria organizada — tudo isso dentro de uma arquitetura MVVM simples e funcional.
+Aplicativo desenvolvido com **React Native + Expo**, utilizando **expo-camera** e **expo-location**.
 
-🧭 Sumário
+Ele permite:
 
-Visão Geral
+- Capturar fotos  
+- Salvar automaticamente a localização  
+- Exibir tudo em uma galeria organizada  
+- Utilizar arquitetura **MVVM** para manter o código limpo e escalável  
 
-Estrutura do Projeto
+---
 
-Funcionalidades
+# 🧭 Sumário
 
-Telas do App
+- [Visão Geral](#-visão-geral)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Funcionalidades](#️-funcionalidades)
+- [Telas do App](#-telas-do-app)
+- [Arquitetura MVVM](#-arquitetura-mvvm)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Fluxo da Aplicação](#️-fluxo-da-aplicação)
+- [Como Executar](#-como-executar)
+- [Melhorias Futuras](#-melhorias-futuras)
+- [Licença](#-licença)
 
-Arquitetura MVVM
+---
 
-Tecnologias Utilizadas
+# 📌 Visão Geral
 
-Fluxo da Aplicação
+Este projeto demonstra como integrar:
 
-Como Executar
+- 📷 **Câmera do dispositivo** (frontal e traseira)  
+- 🛰️ **Geolocalização** (latitude e longitude)  
+- 🗂️ **Galeria interna com organização**  
+- 🧱 **Arquitetura MVVM**  
+- 🪶 **Componentização bem definida**  
 
-Melhorias Futuras
+Tudo utilizando APIs modernas do **Expo**, como o novo `CameraView`.
 
-Licença
+---
 
-📌 Visão Geral
+# 📂 Estrutura do Projeto
 
-Este projeto demonstra como integrar os seguintes componentes:
-
-📷 Câmera do dispositivo (frontal e traseira)
-
-🛰️ Geolocalização (latitude e longitude)
-
-🗂️ Galeria interna
-
-🧱 Arquitetura MVVM
-
-🪶 Componentização
-
-Tudo usando as APIs modernas do Expo (CameraView).
-
-📂 Estrutura do Projeto
-
-A estrutura segue a separação por camadas da arquitetura MVVM (Model-View-ViewModel):
+A organização segue o padrão MVVM, separando bem interface, lógica e dados:
 
 📦 projeto-camera
- ┣ 📂 src
- ┃ ┣ 📂 model
- ┃ ┃ ┣ 📂 entities
- ┃ ┃ ┃ ┗ 📄 MyPhoto.ts
- ┃ ┃ ┗ 📂 services
- ┃ ┃ ┃ ┗ 📄 photoService.ts
- ┃ ┣ 📂 view
- ┃ ┃ ┣ 📄 CameraScreen.tsx
- ┃ ┃ ┗ 📄 GalleryScreen.tsx
- ┃ ┗ 📂 viewModel
- ┃ ┃ ┗ 📄 useCameraViewModel.ts
- ┣ 📄 App.tsx
- ┗ 📄 README.md
 
+├── 📂 src
 
-⚙️ Funcionalidades
+│ ├── 📂 model
 
-Câmera
+│ │ ├── 📂 entities
 
-Alternar entre câmera frontal e traseira
+│ │ │ └── 📄 MyPhoto.ts
 
-Capturar foto com alta qualidade
+│ │ └── 📂 services
 
-Exibir preview ao vivo
+│ │ └── 📄 photoService.ts
 
-Geolocalização
+│ │
 
-Solicita permissão automaticamente
+│ ├── 📂 view
 
-Armazena latitude e longitude da foto
+│ │ ├── 📄 CameraScreen.tsx
 
-Exibe os dados na galeria
+│ │ └── 📄 GalleryScreen.tsx
 
-Galeria
+│ │
 
-Lista todas as fotos com miniaturas
+│ └── 📂 viewModel
 
-Ordenadas por data
+│ └── 📄 useCameraViewModel.ts
 
-Exibe coordenadas
+│
 
-Arquitetura MVVM
+├── 📄 App.tsx
+└── 📄 README.md
 
-Separação clara entre UI, lógica e dados
+# ⚙️ Funcionalidades
 
-Fácil manutenção e expansão
+## 📷 Câmera
+- Alternar entre câmera **frontal** e **traseira**
+- Capturar fotos com **alta qualidade**
+- Preview em tempo real usando `CameraView`
 
-📸 Telas do App
+## 🛰️ Geolocalização
+- Solicitação automática de permissão
+- Salva **latitude** e **longitude**
+- Exibição dos dados na galeria
 
-1️⃣ Tela da Câmera
+## 🗂️ Galeria
+- Lista todas as fotos tiradas
+- Miniaturas exibidas com `Image`
+- Ordenação por data
+- Coordenadas exibidas ao usuário
 
-Responsável pela captura e controle da câmera.
+## 🧱 Arquitetura MVVM
+- Separação clara entre:
+  - **View** (UI)
+  - **ViewModel** (lógica e estados)
+  - **Model** (dados e serviços)
+
+---
+
+# 📸 Telas do App
+
+## 1️⃣ Tela da Câmera
+Responsável por toda a experiência de captura.
 
 Exibe:
 
-Componente CameraView
+- Componente `CameraView`
+- Botões de ação:
+  - 🔄 **Flip** (alternar câmera)
+  - 📸 **Capturar foto**
+  - 🖼️ **Ver fotos**
 
-Botões:
+---
 
-Flip (alternar câmera)
+## 2️⃣ Tela da Galeria
+Exibe todas as fotos salvas com seus metadados.
 
-Capturar
+### Lista contém:
 
-Ver Fotos
+- Miniatura (`Image`)
+- Data/Horário
+- Latitude e Longitude
 
-<CameraView 
-  ref={cameraRef} 
-  style={styles.camera} 
-  facing={facing}
-/>
-
-
-2️⃣ Tela da Galeria
-
-Responsável pela listagem e visualização dos metadados das fotos salvas.
-
-Lista:
-
-Miniatura (Image)
-
-Data da captura
-
-Latitude e longitude
-
-<FlatList
-  data={photos}
-  renderItem={({ item }) => (
-    <Image source={{ uri: item.uri }} style={styles.thumb} />
-  )}
-/>
-
-
-🧠 Arquitetura MVVM
-
-A aplicação segue o padrão Model-View-ViewModel, que promove a separação de responsabilidades:
-
-View (Screens): Responsável apenas pela renderização (UI). Chama métodos do ViewModel em resposta a eventos do usuário.
-
-ViewModel (useCameraViewModel): Contém a lógica de binding e de state. Orquestra a interação entre a View e o Model.
-
-Model (Services e Entities): Contém a lógica de negócio, a gestão de dados (persistência, APIs externas) e as entidades de dados.
-
-Exemplo de Ação no ViewModel:
-
-// Lógica que a View chama para mudar o estado da câmera
-const handleFlip = () => {
-    setFacing((c) => (c === "back" ? "front" : "back"));
-}
-
-
-Entidade MyPhoto (Model):
-
-export type MyPhoto = {
-  uri: string;
-  latitude: number | null;
-  longitude: number | null;
-  timestamp: number;
-};
-
-
-🛠️ Tecnologias Utilizadas
-
-Tecnologia
-
-Finalidade
-
-React Native
-
-Interface mobile
-
-Expo
-
-Ambiente e execução
-
-expo-camera
-
-Captura de imagens
-
-expo-location
-
-Geolocalização
-
-TypeScript
-
-Tipagem estática
-
-MVVM
-
-Arquitetura
-
-🗺️ Fluxo da Aplicação
-
-O fluxo de permissões e navegação garante que a câmera e a localização estejam prontas antes de iniciar a captura:
-
-flowchart TD
-  A[Início] --> B{Permissão da câmera?}
-  B -- Não --> C[Pedir permissão Câmera]
-  B -- Sim --> D{Permissão de localização?}
-  D -- Não --> E[Pedir permissão Localização]
-  D -- Sim --> F[Tela da Câmera]
-  C --> F
-  E --> F
-  F --> G[Capturar Foto]
-  G --> H[Salvar Foto + Localização]
-  H --> I[Tela da Galeria]
-
-
-🚀 Como Executar
-
-Para iniciar o projeto:
-
-Instale as dependências:
-
+# 🚀Como Executar
+## 1️⃣ Instale as dependências
 npm install
 
-
-Inicie o app com Expo:
-
+## 2️⃣ Inicie o app com Expo
 npx expo start
 
+## 3️⃣ Abra no celular
+Use o app Expo Go (Android ou iOS) e escaneie o QR Code.
 
-Abra no dispositivo: Use o aplicativo Expo Go no seu celular (Android ou iOS) e escaneie o código QR.
-
-📌 Melhorias Futuras
-
-Adicionar AsyncStorage para persistência de dados de forma mais robusta.
-
-Implementar zonas de zoom da câmera.
-
-Funcionalidade de Compartilhamento de fotos.
-
-Geração de Thumbnails otimizados para galeria.
-
-Configuração de Upload para um backend.
-
-📝 Licença
-
+# 📝 Licença
 Este projeto é livre para uso educacional.
